@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIS Training Map</title>
+
+  <!-- The css we have added  -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- CSS Leaflet -->
+  <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" /> -->
+    <link rel="stylesheet" href="leaflet.css">
+
+  <!-- <link rel="stylesheet" href="leaflet.css"> -->
+
+  <!-- Javascript Leaflet -->
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+
+  <!-- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script> -->
+
+  <script src="leaflet.js"></script>
+</head>
+
+<body>
+  <!-- The div where the map will be displayed -->
+  <div id="map-div"></div>
+</body>
+
+<!-- IN this part we write the javascript code that displays the map in the above added map div -->
+<script>
+  // A default map variable created
+  var map = L.map('map-div').setView([27.715032419840707, 85.32548936646953], 18);
+
+  // The addition of the tile layer to the map
+  // L.tileLayer is the predefined function that adds the tile layer to the map
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, OSM'
+  }).addTo(map);
+
+
+  // // Tile layer from different sourcesç
+  // // https://leaflet-extras.github.io/leaflet-providers/preview/
+  // var Stadia_AlidadeSmoothDark = L.tileLayer(
+  //   'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+  //     maxZoom: 20,
+  //     attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+  //   });
+  // Stadia_AlidadeSmoothDark.addTo(map);
+
+//   var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+// 	maxZoom: 17,
+// 	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+// });
+// OpenTopoMap.addTo(map);
+
+// Marker icon change
+var policeIcon = L.icon({
+    iconUrl: 'siren.png',
+    iconSize:     [38, 45], // size of the icon
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+
+  // // The addition of the marker to the map
+  // // The marker is created with the predefined function L.marker
+  // L.marker([27.715633140595592, 85.32757066809712], {icon: policeIcon})
+  //   .addTo(map)
+  //   .bindPopup('Nepal Police Headquarters, Petrol Pump')
+  //   .openPopup();
+
+   // 27.70781973567541, 85.31531676042627
+
+  // If we have many schools coordinates in array
+  
+  var schools = [[27.715032419840707, 85.32548936646953], [27.714313799738857, 85.3258914473779],[27.714025007149218, 85.32513280415455]];
+
+  for (let index = 0; index < schools.length; index++) {
+    
+    const element = schools[index];
+   
+    L.marker(element, {icon: policeIcon}).addTo(map)
+    .bindPopup('I am a <h1>Pin Points</h1>');
+    
+  }
+</script>
+
+</html>
