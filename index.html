@@ -81,14 +81,14 @@ var policeIcon = L.icon({
 
   // If we have many schools coordinates in array
   
-  var schools = [[27.715032419840707, 85.32548936646953], [27.714313799738857, 85.3258914473779],[27.714025007149218, 85.32513280415455]];
+  var polUnits = [[27.715032419840707, 85.32548936646953], [27.714313799738857, 85.3258914473779],[27.714025007149218, 85.32513280415455]];
 
-  for (let index = 0; index < schools.length; index++) {
+  for (let index = 0; index < polUnits.length; index++) {
     
-    const element = schools[index];
+    const element = polUnits[index];
    
     L.marker(element, {icon: policeIcon}).addTo(map)
-    .bindPopup('I am a <h1>Pin Points</h1>');
+    .bindPopup('Security Post '+(index+1)+'');
     
   }
 </script>
